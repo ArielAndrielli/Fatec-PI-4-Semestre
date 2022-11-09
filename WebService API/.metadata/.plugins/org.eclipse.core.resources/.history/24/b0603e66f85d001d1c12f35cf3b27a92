@@ -1,0 +1,80 @@
+package com.SchoolSchedule.demo.entities;
+
+import java.util.Date;
+
+import javax.annotation.processing.Generated;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.SchoolSchedule.demo.entities.pk.AgendamentoPK;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@Entity
+@Table(name="tb_agendamento")
+public class Agendamento {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@ManyToOne
+	@JoinColumn(name = "sala_id")
+	private Sala sala;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+	@JsonFormat(pattern="dd/MM/yyyy'T'HH:mm:ss")
+	private Date inicio;
+	@JsonFormat(pattern="dd/MM/yyyy'T'HH:mm:ss")
+	private Date fim;
+	
+	public Agendamento() {
+		
+	}
+
+	public Agendamento(Sala sala,User user,Date inicio, Date fim) {
+		this.id.setSala(sala);
+		this.id.setUser(user);
+		this.inicio = inicio;
+		this.fim = fim;
+	}
+
+	public User getUser() {
+		return id.getUser();
+	}
+	
+	public void setUser(User user) {
+		id.setUser(user);
+	}
+	
+	
+	public Sala getSala() {
+		return id.getSala();
+	}
+	
+	public void setSala(Sala sala) {
+		id.setSala(sala);
+	}
+
+	public Date getInicio() {
+		return inicio;
+	}
+
+	public void setInicio(Date inicio) {
+		this.inicio = inicio;
+	}
+
+	public Date getFim() {
+		return fim;
+	}
+
+	public void setFim(Date fim) {
+		this.fim = fim;
+	}
+	
+	
+}

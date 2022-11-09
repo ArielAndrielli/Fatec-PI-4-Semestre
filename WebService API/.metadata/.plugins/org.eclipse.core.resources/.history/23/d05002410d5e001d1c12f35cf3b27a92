@@ -1,0 +1,5 @@
+package com.SchoolSchedule.demo.repository;
+
+public class AgendamentoCustomRepository {
+
+}

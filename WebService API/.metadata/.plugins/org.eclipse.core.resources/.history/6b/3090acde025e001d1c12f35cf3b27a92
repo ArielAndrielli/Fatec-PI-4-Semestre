@@ -1,0 +1,67 @@
+package com.SchoolSchedule.demo.entities.pk;
+
+import java.io.Serializable;
+import java.util.Objects;
+
+import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.SchoolSchedule.demo.entities.Sala;
+import com.SchoolSchedule.demo.entities.User;
+
+@Embeddable
+public class AgendamentoPK implements Serializable{
+	
+	private static final long serialVersionUID = -6491707280978594282L;
+	@ManyToOne
+	@JoinColumn(name="sala_id")
+	private Sala sala;
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
+	
+	
+	
+	public AgendamentoPK() {
+		super();
+	}
+
+
+	public AgendamentoPK(Sala sala, User user) {
+		this.sala = sala;
+		this.user = user;
+	}
+	
+	
+	public Sala getSala() {
+		return sala;
+	}
+	public void setSala(Sala sala) {
+		this.sala = sala;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(sala, user);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AgendamentoPK other = (AgendamentoPK) obj;
+		return Objects.equals(sala, other.sala) && Objects.equals(user, other.user);
+	}
+	
+	
+	
+}

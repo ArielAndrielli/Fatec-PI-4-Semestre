@@ -1,0 +1,10 @@
+package com.SchoolSchedule.demo.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.SchoolSchedule.demo.entities.Agendamento;
+import com.SchoolSchedule.demo.entities.pk.AgendamentoPK;
+
+public interface AgendamentoRepository extends JpaRepository<Agendamento, Long>{
+
+}

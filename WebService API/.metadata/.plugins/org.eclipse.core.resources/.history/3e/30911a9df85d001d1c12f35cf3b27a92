@@ -1,0 +1,24 @@
+package com.SchoolSchedule.demo.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.SchoolSchedule.demo.entities.Agendamento;
+import com.SchoolSchedule.demo.repository.AgendamentoRepository;
+import com.SchoolSchedule.demo.repository.SalaRepository;
+import com.SchoolSchedule.demo.repository.UserRepository;
+
+@Service
+public class AgendamentoService {
+	@Autowired
+	private AgendamentoRepository agendamentoRepository;
+
+	
+	public List<Agendamento> findAll(){
+		return agendamentoRepository.findAll();
+	}
+	
+	
+}

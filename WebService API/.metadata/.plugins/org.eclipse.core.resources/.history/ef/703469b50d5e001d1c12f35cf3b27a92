@@ -1,0 +1,18 @@
+package com.SchoolSchedule.demo.repository;
+
+import org.springframework.stereotype.Repository;
+
+import com.SchoolSchedule.demo.entities.Agendamento;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+@Repository
+public class AgendamentoCustomRepository {
+	private final EntityManager em;
+	
+	public List<Agendamento> findByUserAndClass(Long idUser,Long idClass){
+		
+	}
+}
