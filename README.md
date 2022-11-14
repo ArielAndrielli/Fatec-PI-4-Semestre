@@ -1,11 +1,10 @@
 # Fatec-PI-4-Semestre
-<hr>
 <h2>Sistema de Agendamento</h2>
-<hr>
+<hr> 
 Sistema de agendamento desenvolvido no 4ºSemestre de DSM
 <div>
 <h3> Participantes </h3>
-<a href="https://github.com/JpedroBH><img src="https://avatars.githubusercontent.com/u/51427296?v=4"><a>
+<img src="https://avatars.githubusercontent.com/u/51427296?v=4">
 </div>
 
 
