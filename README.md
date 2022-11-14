@@ -4,7 +4,7 @@
 Sistema de agendamento desenvolvido no 4ºSemestre de DSM
 <div>
 <h3> Participantes </h3>
-<img src="https://github.com/JpedroBH">
+<img src="https://github.com/JpedroBH"/>
 </div>
 
 
