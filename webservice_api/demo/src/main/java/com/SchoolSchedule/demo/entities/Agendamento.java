@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
@@ -25,10 +27,12 @@ public class Agendamento {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
-	@JsonFormat(pattern="dd/MM/yyyy'T'HH:mm:ss")
+	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm")
 	private Date inicio;
-	@JsonFormat(pattern="dd/MM/yyyy'T'HH:mm:ss")
+	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm")
 	private Date fim;
+	
+	
 	
 	public Agendamento() {
 		
@@ -66,6 +70,7 @@ public class Agendamento {
 		this.user = user;
 	}
 
+	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
 	public Date getInicio() {
 		return inicio;
 	}
@@ -73,7 +78,8 @@ public class Agendamento {
 	public void setInicio(Date inicio) {
 		this.inicio = inicio;
 	}
-
+	
+	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
 	public Date getFim() {
 		return fim;
 	}

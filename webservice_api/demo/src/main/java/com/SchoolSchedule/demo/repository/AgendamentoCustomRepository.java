@@ -1,13 +1,15 @@
 package com.SchoolSchedule.demo.repository;
 
-import org.springframework.stereotype.Repository;
-
-import com.SchoolSchedule.demo.entities.Agendamento;
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+
+import org.springframework.stereotype.Repository;
+
+import com.SchoolSchedule.demo.entities.Agendamento;
 
 @Repository
 public class AgendamentoCustomRepository {
@@ -22,5 +24,14 @@ public class AgendamentoCustomRepository {
 		q.setParameter("salaID", idClass);
 		q.setParameter("userID", idUser);
 		return q.getResultList();
+	}
+	
+	public Agendamento checkReservation(Integer registro,String dataTexto)throws Exception{
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date dataIni = sdf.parse(dataTexto);
+		Date dataFim = sdf.parse(dataTexto);
+		String query = "select a from Agendamento a where a.user.registroEscolar = :registro and date_trunc('second',a.inicio) <= :dataIni and date_trunc('second',a.fim) >= :dataFim";
+		return  em.createQuery(query, Agendamento.class).setParameter("registro", registro).setParameter("dataIni", dataIni).setParameter("dataFim", dataFim).getSingleResult();
+		
 	}
 }

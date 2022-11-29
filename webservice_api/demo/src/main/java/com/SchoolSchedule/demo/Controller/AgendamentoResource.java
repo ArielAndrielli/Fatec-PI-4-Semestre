@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,14 +43,23 @@ public class AgendamentoResource {
 	
 	@PostMapping
 	public ResponseEntity<Agendamento> insert(@RequestBody InserirAgendamento inserirAgendamento){
+		if(inserirAgendamento.getInicio()==null || inserirAgendamento.getFim()==null)
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		Agendamento agendamento = agendamentoService.insert(inserirAgendamento);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(agendamento.getId()).toUri();
 		return ResponseEntity.created(uri).body(agendamento);
 	}
 	
-	public ResponseEntity<List<Agendamento>> findByUserAndClass(@RequestParam("salaID")Long salaID,@RequestParam("userID")Long userID){
-		List<Agendamento> agendamentos = agendamentoCustomRepository.findByUserAndClass(userID, salaID);
-		return ResponseEntity.ok().body(agendamentos);
+	
+	@GetMapping("/reserva")
+	public ResponseEntity<Agendamento> checkReservation(@RequestParam("registro")Integer registro,@RequestParam String data){
+		try {
+			return ResponseEntity.ok().body(agendamentoCustomRepository.checkReservation(registro, data));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 	}
 	
 }

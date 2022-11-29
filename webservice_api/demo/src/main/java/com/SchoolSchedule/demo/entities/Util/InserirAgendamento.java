@@ -7,9 +7,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class InserirAgendamento {
 	private Long salaID;
 	private Long userID;
-	@JsonFormat(pattern="dd/MM/yyyy'T'HH:mm:ss")
+	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm")
 	private Date inicio;
-	@JsonFormat(pattern="dd/MM/yyyy'T'HH:mm:ss")
+	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm")
 	private Date fim;
 	
 	public InserirAgendamento(Long salaID, Long userID, Date inicio, Date fim) {

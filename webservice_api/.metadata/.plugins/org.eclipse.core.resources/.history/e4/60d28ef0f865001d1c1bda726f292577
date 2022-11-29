@@ -1,0 +1,105 @@
+package com.SchoolSchedule.demo.entities;
+
+import java.util.Date;
+import java.util.Objects;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@Entity
+@Table(name="tb_agendamento")
+public class Agendamento {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@ManyToOne
+	@JoinColumn(name = "sala_id")
+	private Sala sala;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+	@JsonFormat(pattern="dd/MM/yyyy HH:mm:")
+	private Date inicio;
+	@JsonFormat(pattern="dd/MM/yyyy HH:mm:")
+	private Date fim;
+	
+	public Agendamento() {
+		
+	}
+
+	public Agendamento(Long id, Sala sala, User user, Date inicio, Date fim) {
+		this.id = id;
+		this.sala = sala;
+		this.user = user;
+		this.inicio = inicio;
+		this.fim = fim;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Sala getSala() {
+		return sala;
+	}
+
+	public void setSala(Sala sala) {
+		this.sala = sala;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Date getInicio() {
+		return inicio;
+	}
+
+	public void setInicio(Date inicio) {
+		this.inicio = inicio;
+	}
+
+	public Date getFim() {
+		return fim;
+	}
+
+	public void setFim(Date fim) {
+		this.fim = fim;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Agendamento other = (Agendamento) obj;
+		return Objects.equals(id, other.id);
+	}
+
+	
+	
+	
+}
