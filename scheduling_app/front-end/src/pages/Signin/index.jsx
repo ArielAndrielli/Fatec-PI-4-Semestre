@@ -15,22 +15,16 @@ const Signin = ()=>{
 
     const handleLogin = ()=>{
         if(!email || !senha){
-            setError("Preencha todos os campos")
-            return ;
+            setError("Preencha todos os campos!")
+        }else{
+            navigate("/home")
         }
-
-        const res = signin(email,senha);
-
-        if(res){
-            setError(res);
-            return; 
-        }
-        navigate("/home")
+        
     }
 
     return (
         <C.Container>
-            <C.Label>Sitema de Agendamentos</C.Label>
+            <C.Label>SISTEMA DE AGENDAMENTOS</C.Label>
             <C.Content>
                 <Input
                 type="email"

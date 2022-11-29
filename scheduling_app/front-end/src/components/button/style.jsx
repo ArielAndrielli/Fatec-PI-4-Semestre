@@ -12,4 +12,6 @@ export const Button = styled.button`
     font-weight:600;
     font-size:16px;
     max-width:350px;
+    z-index:1000;
+    margin-bottom:15px
 `;

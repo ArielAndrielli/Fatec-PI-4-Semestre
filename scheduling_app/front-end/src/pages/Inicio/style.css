@@ -1,0 +1,23 @@
+body{
+    background-color: #f0f2f5;
+}
+
+table{
+    width: 80%;
+    margin:0 auto;
+    text-align: center;
+    margin-top: 60px;
+    color: white;
+    background-color: #046ee5;
+    border-radius: 10px;
+}
+
+.salas{
+    padding: 30px;
+    text-align: center;
+}
+
+td{
+    padding: 10px;
+}
+

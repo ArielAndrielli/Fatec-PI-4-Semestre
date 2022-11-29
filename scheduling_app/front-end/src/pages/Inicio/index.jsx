@@ -1,9 +1,5 @@
-import React from "react";
-import Button from "../../components/button";
-import * as C from "./style";
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import "./style.css"
 
 function Registers({list = []}){
     return <table>
@@ -32,8 +28,7 @@ function Registers({list = []}){
     </table>
 }
 
-const Home = ()=>{
-
+const Content = ()=>{
     const [list,setList]=useState([])
 
     useEffect(  ()=>{
@@ -42,23 +37,13 @@ const Home = ()=>{
             setList( await result.json())
         })
     },[])
-    return(
-        <C.Div>
-            <C.Aside>
-                <Link to="/principal"><Button Text="Salas"/></Link>
-                <Link to="/agendar"><Button Text="Agendar"/></Link>
-                <Link to="/agendamentos"><Button Text="Verificar Agenedamentos"/></Link>
-                <Link to="/"><Button Text="Sair"/></Link>       
-            </C.Aside>
-            <C.Content>
-                <h2>Meus agendamentos</h2>
-            <div>
-                <Registers list={list}/>
-            </div>
-            </C.Content>
-        </C.Div>
-        )
 
+    return(
+        <div className="salas">
+            <h2>Salas Disponiveis no Sistema</h2>
+            <Registers list={list}/>
+        </div>
+    )
 }
 
-export default Home; 
+export default Content
