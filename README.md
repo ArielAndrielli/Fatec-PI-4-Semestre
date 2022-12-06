@@ -29,5 +29,5 @@ O projeto é uma plataforma de agendamentos de salas, a proposta é que o usuár
 <br>
 <a href="https://github.com/VitorHenri/Fatec-PI-4-Semestre/tree/main/webservice_api">API</a>
 <br>
-<a href="https://github.com/VitorHenri/Fatec-PI-4-Semestre/tree/main/scheduling_app">Aplicação Web</a>
+<a href="https://github.com/VitorHenri/Fatec-PI-4-Semestre/tree/main/scheduling_app/front-end">Aplicação Web</a>
 
