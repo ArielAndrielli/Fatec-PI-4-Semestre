@@ -25,7 +25,7 @@ O projeto é uma plataforma de agendamentos de salas, a proposta é que o usuár
 <br>
 <a href="https://www.figma.com/file/5hbMmCe6fdkHWcAKKaiAdY/SISTEMA-AGENDAMENTO?node-id=0%3A1&t=hgtXQSt4wpdj0KDI-1" target="_blank">DESIGN Projeto</a>
 <br>
-<a href="https://github.com/VitorHenri/Fatec-PI-4-Semestre/tree/main/documentation_and_diagrams">Documentação e Diagramas</a>
+<a href="https://github.com/VitorHenri/Fatec-PI-4-Semestre/tree/main/documents_diagrams">Documentação e Diagramas</a>
 <br>
 <a href="https://github.com/VitorHenri/Fatec-PI-4-Semestre/tree/main/webservice_api">API</a>
 <br>
