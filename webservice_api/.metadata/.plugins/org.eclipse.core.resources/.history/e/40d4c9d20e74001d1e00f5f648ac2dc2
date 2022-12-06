@@ -1,0 +1,11 @@
+package com.SchoolSchedule.demo.repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.SchoolSchedule.demo.entities.User;
+
+public interface UserRepository extends JpaRepository<User,Long>{
+	
+	@Query("SELECT U FROM User WHERE U.email= :email AND U.senha= :senha LIMIT 1")
+	User findByCredenciais(String email,String senha);
+}

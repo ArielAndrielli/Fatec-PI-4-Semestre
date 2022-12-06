@@ -1,0 +1,6 @@
+package com.SchoolSchedule.demo.entities.Util;
+
+public class UserDTO {
+	private String userName;
+	private String password;
+}

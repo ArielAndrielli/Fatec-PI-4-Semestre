@@ -3,6 +3,7 @@ import AsyncSelect from "react-select/async"
 import axios from "axios";
 import Button from "../../components/button";
 import "./style.css"
+import { mockComponent } from "react-dom/test-utils";
 
 const Form = ()=>{
 
@@ -32,18 +33,21 @@ const Form = ()=>{
         }
         const sala = selectedValue.id;
         
-        let user = 1
         let start = document.getElementById("inicio").value
         let end = document.getElementById("fim").value
         
         axios.post("http://localhost:8080/agendamentos",{
             salaID: sala,
-            userID: user,
+            userID: sessionStorage.getItem("id"),
             inicio: start,
             fim: end
         })
         .then(function (response) {
+            if(response.status!=208)
             setMensagem("Agendamento realizado com sucesso, verifique na tela inicial seus agendamentos!")
+            else{
+                setMensagem("Já existe um agendamento para essa sala que colide com o horário solicitado, verifique por gentileza os agendamento gerais no menu 'Verificar Agendamentos' e tente selecionar outro período!")
+            }
         })
         .catch(function(error){
             if(error.response.status==500)

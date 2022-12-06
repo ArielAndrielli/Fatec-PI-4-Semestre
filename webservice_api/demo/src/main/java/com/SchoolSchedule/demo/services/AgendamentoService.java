@@ -10,6 +10,7 @@ import com.SchoolSchedule.demo.entities.Agendamento;
 import com.SchoolSchedule.demo.entities.Sala;
 import com.SchoolSchedule.demo.entities.User;
 import com.SchoolSchedule.demo.entities.Util.InserirAgendamento;
+import com.SchoolSchedule.demo.repository.AgendamentoCustomRepository;
 import com.SchoolSchedule.demo.repository.AgendamentoRepository;
 import com.SchoolSchedule.demo.repository.SalaRepository;
 import com.SchoolSchedule.demo.repository.UserRepository;
@@ -22,6 +23,8 @@ public class AgendamentoService {
 	private SalaRepository salaRepository;
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private AgendamentoCustomRepository agendamentoCustom;
 
 	public List<Agendamento> findAll() {
 		return agendamentoRepository.findAll();
@@ -35,8 +38,15 @@ public class AgendamentoService {
 	public Agendamento insert(InserirAgendamento inserirAgendamento) {
 		Optional<Sala> opSala = salaRepository.findById(inserirAgendamento.getSalaID());
 		Optional<User> opUser = userRepository.findById(inserirAgendamento.getUserID());
-		return agendamentoRepository.save(new Agendamento(null,opSala.get(),opUser.get(),inserirAgendamento.getInicio(),inserirAgendamento.getFim()));
-		
+		Agendamento agendamentoJaExiste = agendamentoCustom.validaAgendamento(inserirAgendamento.getSalaID(),inserirAgendamento.getInicio());
+		if(agendamentoJaExiste==null)
+			return agendamentoRepository.save(new Agendamento(null,opSala.get(),opUser.get(),inserirAgendamento.getInicio(),inserirAgendamento.getFim()));
+		else
+			return null;
+	}
+	
+	public void deleteAgendamento(Long id) {
+		agendamentoRepository.deleteById(id);	
 	}
 
 }

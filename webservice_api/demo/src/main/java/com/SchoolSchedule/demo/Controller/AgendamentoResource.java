@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,8 +47,12 @@ public class AgendamentoResource {
 		if(inserirAgendamento.getInicio()==null || inserirAgendamento.getFim()==null)
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		Agendamento agendamento = agendamentoService.insert(inserirAgendamento);
+		if(agendamento!=null) {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(agendamento.getId()).toUri();
 		return ResponseEntity.created(uri).body(agendamento);
+		}else {
+		return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).build();	
+		}
 	}
 	
 	
@@ -60,6 +65,18 @@ public class AgendamentoResource {
 			e.printStackTrace();
 		}
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+	}
+	
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<Void> deleteAgendamento(@PathVariable Long id){
+		agendamentoService.deleteAgendamento(id);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping(value = "/user/{id}")
+	public ResponseEntity<List<Agendamento>> getAgendamentoFromUser(@PathVariable Long id){
+		List<Agendamento> agendamentos = agendamentoCustomRepository.agendamentosFromUser(id);
+		return ResponseEntity.ok().body(agendamentos);
 	}
 	
 }

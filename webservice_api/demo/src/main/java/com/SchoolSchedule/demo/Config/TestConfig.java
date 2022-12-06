@@ -1,5 +1,6 @@
 package com.SchoolSchedule.demo.Config;
 
+import java.util.Arrays;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +28,15 @@ public class TestConfig implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		User user = new User(null,"Vitor Henrique Dos Santos","Professor",258963,"vitorsantos.info@gmail.com","123456",new Date());
-		userRepository.save(user);
+//		User user = new User(null,"Vitor Henrique Dos Santos","Professor",258963,"vitorsantos.info@gmail.com","123456",new Date());
+//		userRepository.save(user);
 		
-		Sala sala = new Sala(null,'A',16,1,"Sala de aula grande com tv,projetor e lousa digital",true);
-		salaRepository.save(sala);
-		
-		Agendamento agendamento = new Agendamento(null, sala, user, new Date(),new Date());
-		agendamentoRepository.save(agendamento);
+//		Sala sala = new Sala(null,'A',16,1,"Sala de aula grande com tv,projetor e lousa digital",true);
+//		salaRepository.save(sala);
+//		
+//		Agendamento agendamento = new Agendamento(null, sala, user, new Date(),new Date());
+//		Agendamento agendamento2 = new Agendamento(null, sala, user, new Date(),new Date());
+//		agendamentoRepository.saveAll(Arrays.asList(agendamento,agendamento2));
 		
 		
 	}

@@ -21,6 +21,7 @@ function Registers({list = []}){
                         <td>{numero}</td>
                         <td>{tipo}</td>
                         <td>{descricao}</td>
+                        
                     </tr>
                 })
             }

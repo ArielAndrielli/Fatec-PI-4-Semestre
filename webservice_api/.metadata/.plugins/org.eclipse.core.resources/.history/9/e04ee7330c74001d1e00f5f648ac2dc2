@@ -1,0 +1,5 @@
+package com.SchoolSchedule.demo.entities.Util;
+
+public class UserDTO {
+
+}

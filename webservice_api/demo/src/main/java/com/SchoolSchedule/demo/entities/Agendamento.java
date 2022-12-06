@@ -9,14 +9,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="tb_agendamento")
+@NamedQuery(name = "validaAgendamento",query = "SELECT A FROM Agendamento A WHERE A.sala.id = :idSala AND A.inicio<= :inicio AND A.fim>= :inicio")
 public class Agendamento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

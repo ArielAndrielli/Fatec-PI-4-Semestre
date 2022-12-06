@@ -5,4 +5,5 @@ import com.SchoolSchedule.demo.entities.User;
 
 public interface UserRepository extends JpaRepository<User,Long>{
 	
+
 }

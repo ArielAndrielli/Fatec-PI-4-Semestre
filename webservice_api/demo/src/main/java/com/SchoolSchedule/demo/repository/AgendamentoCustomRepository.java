@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -32,6 +33,23 @@ public class AgendamentoCustomRepository {
 		Date dataFim = sdf.parse(dataTexto);
 		String query = "select a from Agendamento a where a.user.registroEscolar = :registro and date_trunc('second',a.inicio) <= :dataIni and date_trunc('second',a.fim) >= :dataFim";
 		return  em.createQuery(query, Agendamento.class).setParameter("registro", registro).setParameter("dataIni", dataIni).setParameter("dataFim", dataFim).getSingleResult();
-		
+	}
+	
+	public Agendamento validaAgendamento(Long idSala,Date inicio) {
+		try {
+		Agendamento agendamento =  em.createQuery("SELECT A FROM Agendamento A WHERE A.sala.id = :idSala AND A.inicio<= :inicio1 AND A.fim>= :inicio2",Agendamento.class)
+				.setParameter("inicio1", inicio)
+				.setParameter("inicio2", inicio)
+				.setParameter("idSala", idSala).getSingleResult();
+		return agendamento;
+		}catch (NoResultException e) {
+			return null;
+		}
+	}
+	
+	public List<Agendamento> agendamentosFromUser(Long idUser){
+		List<Agendamento> agendamentos = em.createQuery("SELECT A FROM Agendamento A WHERE A.user.id = :idUser",Agendamento.class)
+		.setParameter("idUser", idUser).getResultList();
+		return agendamentos;
 	}
 }

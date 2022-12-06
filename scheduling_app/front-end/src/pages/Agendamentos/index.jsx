@@ -19,6 +19,7 @@ function Registers({list = []}){
                 <th>Função</th>
                 <th>Início</th>
                 <th>Fim</th>
+                
             </tr>
         </thead>
         <tbody>

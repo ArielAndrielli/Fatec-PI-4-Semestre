@@ -4,6 +4,7 @@ import Button from "../../components/button"
 import * as C from "./style"
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth"
+import axios from "axios";
 
 const Signin = ()=>{
     const { signin } = useAuth();
@@ -13,11 +14,27 @@ const Signin = ()=>{
     const [senha,setSenha] = useState("");
     const [error,setError] = useState("");
 
+
     const handleLogin = ()=>{
         if(!email || !senha){
             setError("Preencha todos os campos!")
         }else{
-            navigate("/home")
+            axios.post("http://localhost:8080/login",{
+            userName:email,
+            password:senha
+            }).then(response=>{
+                if(response.status==200){
+                    sessionStorage.clear()
+                    sessionStorage.setItem("name",response.data.name)
+                    sessionStorage.setItem("registro",response.data.registroEscolar)
+                    sessionStorage.setItem("funcao",response.data.funcao)
+                    sessionStorage.setItem("id",response.data.id)
+                    navigate("/home")
+                }
+            }).catch(function(error){
+                setError("Credenciais inválidas!")
+            })
+            
         }
         
     }

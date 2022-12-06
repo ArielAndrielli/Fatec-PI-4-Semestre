@@ -1,0 +1,50 @@
+package com.SchoolSchedule.demo.services;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.SchoolSchedule.demo.entities.Agendamento;
+import com.SchoolSchedule.demo.entities.Sala;
+import com.SchoolSchedule.demo.entities.User;
+import com.SchoolSchedule.demo.entities.Util.InserirAgendamento;
+import com.SchoolSchedule.demo.repository.AgendamentoCustomRepository;
+import com.SchoolSchedule.demo.repository.AgendamentoRepository;
+import com.SchoolSchedule.demo.repository.SalaRepository;
+import com.SchoolSchedule.demo.repository.UserRepository;
+
+@Service
+public class AgendamentoService {
+	@Autowired
+	private AgendamentoRepository agendamentoRepository;
+	@Autowired
+	private SalaRepository salaRepository;
+	@Autowired
+	private UserRepository userRepository;
+	@Autowired
+	private AgendamentoCustomRepository agendamentoCustom;
+
+	public List<Agendamento> findAll() {
+		return agendamentoRepository.findAll();
+	}
+
+	public Agendamento findById(Long id) {
+		Optional<Agendamento> op = agendamentoRepository.findById(id);
+		return op.get();
+	}
+
+	public Agendamento insert(InserirAgendamento inserirAgendamento) {
+		Optional<Sala> opSala = salaRepository.findById(inserirAgendamento.getSalaID());
+		Optional<User> opUser = userRepository.findById(inserirAgendamento.getUserID());
+		Agendamento agendamentoJaExiste = 
+		return agendamentoRepository.save(new Agendamento(null,opSala.get(),opUser.get(),inserirAgendamento.getInicio(),inserirAgendamento.getFim()));
+		
+	}
+	
+	public void deleteAgendamento(Long id) {
+		agendamentoRepository.deleteById(id);	
+	}
+
+}
